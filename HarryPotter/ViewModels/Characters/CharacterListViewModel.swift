@@ -7,6 +7,10 @@ class CharacterListViewModel: ObservableObject {
     
     private let apiService: APIServiceProtocol
     
+    private var currentPage = 1
+    private let pageSize = 10
+    private var canLoadMorePages = true
+    
     init(apiService: APIServiceProtocol = APIService()) {
         self.apiService = apiService
         
@@ -23,13 +27,34 @@ class CharacterListViewModel: ObservableObject {
         
         do {
             let fetchedCharacters: [Character]
-            fetchedCharacters = try await apiService.fetchCharacters()
+            fetchedCharacters = try await apiService.fetchCharacters(page: currentPage, max: pageSize)
+            canLoadMorePages = fetchedCharacters.count == pageSize
 
-            self.characters = fetchedCharacters
+            if currentPage == 1 {
+                self.characters = fetchedCharacters
+            } else {
+                self.characters.append(contentsOf: fetchedCharacters)
+            }
+            
             isLoading = false
         } catch {
             errorMessage = error.localizedDescription
             isLoading = false
         }
+    }
+    
+    @MainActor
+    func loadMoreCharacters(currentCharacter: Character) async {
+        guard canLoadMorePages, !isLoading else { return }
+        guard let lastCharacter = characters.last, lastCharacter.id == currentCharacter.id else { return }
+
+        currentPage += 1
+        await loadCharacters()
+    }
+    
+    func reset() {
+        self.characters = []
+        self.currentPage = 1
+        self.canLoadMorePages = true
     }
 }

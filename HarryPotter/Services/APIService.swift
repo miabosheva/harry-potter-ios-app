@@ -4,8 +4,24 @@ class APIService: APIServiceProtocol {
     
     private var baseURL = "https://potterapi-fedeperin.vercel.app/en"
     
-    func fetchBooks() async throws -> [Book] {
-        guard let url = URL(string: baseURL + "/books") else {
+    func fetchBooks(page: Int?, max: Int?) async throws -> [Book] {
+        guard var urlComponents = URLComponents(string: baseURL + "/books") else {
+            throw APIError.invalidURL
+        }
+        
+        // add the query params if there are any
+        var queryParams: [String: String] = [:]
+        if let max = max {
+            queryParams["max"] = String(max)
+            if let page = page {
+                queryParams["page"] = String(page)
+            }
+        }
+        if !queryParams.isEmpty {
+            urlComponents.queryItems = queryParams.map { URLQueryItem(name: $0.key, value: $0.value) }
+        }
+        
+        guard let url = urlComponents.url else {
             throw APIError.invalidURL
         }
         
@@ -43,7 +59,7 @@ class APIService: APIServiceProtocol {
             throw APIError.invalidURL
         }
         
-        urlComponents.queryItems = [URLQueryItem(name: "index", value: "\(bookIndex)")]
+        urlComponents.queryItems = [URLQueryItem(name: "index", value: String(bookIndex))]
         
         guard let url = urlComponents.url else {
             throw APIError.invalidURL
@@ -78,8 +94,25 @@ class APIService: APIServiceProtocol {
         }
     }
     
-    func fetchCharacters() async throws -> [Character] {
-        guard let url = URL(string: baseURL + "/characters") else {
+    func fetchCharacters(page: Int?, max: Int?) async throws -> [Character] {
+        
+        guard var urlComponents = URLComponents(string: baseURL + "/characters") else {
+            throw APIError.invalidURL
+        }
+        
+        // add the query params if there are any
+        var queryParams: [String: String] = [:]
+        if let max = max {
+            queryParams["max"] = String(max)
+            if let page = page {
+                queryParams["page"] = String(page)
+            }
+        }
+        if !queryParams.isEmpty {
+            urlComponents.queryItems = queryParams.map { URLQueryItem(name: $0.key, value: $0.value) }
+        }
+        
+        guard let url = urlComponents.url else {
             throw APIError.invalidURL
         }
         
@@ -117,7 +150,7 @@ class APIService: APIServiceProtocol {
             throw APIError.invalidURL
         }
         
-        urlComponents.queryItems = [URLQueryItem(name: "index", value: "\(characterIndex)")]
+        urlComponents.queryItems = [URLQueryItem(name: "index", value: String(characterIndex))]
         
         guard let url = urlComponents.url else {
             throw APIError.invalidURL

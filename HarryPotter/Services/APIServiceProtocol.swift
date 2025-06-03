@@ -1,8 +1,8 @@
 import Foundation
 
 protocol APIServiceProtocol {
-    func fetchBooks() async throws -> [Book]
+    func fetchBooks(page: Int?, max: Int?) async throws -> [Book]
     func fetchBook(bookIndex: Int) async throws -> Book
-    func fetchCharacters() async throws -> [Character]
+    func fetchCharacters(page: Int?, max: Int?) async throws -> [Character]
     func fetchCharacter(characterIndex: Int) async throws -> Character
 }

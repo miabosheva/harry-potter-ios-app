@@ -11,10 +11,19 @@ struct CharacterListView: View {
                     character in
                     NavigationLink(value: character) {
                         CharacterRowView(character: character)
+                            .onAppear {
+                                Task { @MainActor in
+                                    await viewModel.loadMoreCharacters(currentCharacter: character)
+                                }
+                            }
                     }
                 }
                 
-                if viewModel.characters.isEmpty && !viewModel.isLoading && viewModel.errorMessage == nil {
+                if viewModel.isLoading && !viewModel.characters.isEmpty {
+                    LoadingView()
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .listRowSeparator(.hidden)
+                } else if viewModel.characters.isEmpty && !viewModel.isLoading && viewModel.errorMessage == nil {
                     // placeholder for empty content
                     // TODO: - Change description, fix size
                     ContentUnavailableView(
@@ -33,7 +42,7 @@ struct CharacterListView: View {
             }
             .refreshable {
                 Task { @MainActor in
-                    viewModel.characters = []
+                    viewModel.reset()
                     await viewModel.loadCharacters()
                 }
             }

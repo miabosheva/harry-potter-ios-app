@@ -11,6 +11,11 @@ struct BookListView: View {
                     book in
                     NavigationLink(value: book) {
                         BookRowView(book: book)
+                            .onAppear {
+                                Task { @MainActor in
+                                    await viewModel.loadMoreBooks(currentBook: book)
+                                }
+                            }
                     }
                 }
                 
