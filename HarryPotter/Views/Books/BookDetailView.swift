@@ -17,6 +17,7 @@ struct BookDetailView: View {
                     .frame(maxWidth: .infinity, alignment: .center)
                     .padding(.vertical, 50)
             } else if let book = viewModel.book {
+                KFImageView(imageUrl: book.cover)
                 Text(book.originalTitle)
             }
         }

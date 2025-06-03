@@ -21,7 +21,7 @@ struct KFImageView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 50, height: 50)
-                        .foregroundColor(.secondary)
+                        .foregroundColor(Color.gray)
                     
                 }
                 .onSuccess { result in
@@ -30,8 +30,7 @@ struct KFImageView: View {
                 .onFailure { error in
                     print("Error: \(error)")
                 }
-                .aspectRatio(contentMode: .fit)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .aspectRatio(contentMode: .fill)
         }
     }
 }
