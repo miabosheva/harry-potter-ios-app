@@ -6,6 +6,7 @@ struct CharacterRowView: View {
     
     var body: some View {
         VStack {
+            KFImageView(imageUrl: character.image)
             Text(character.nickname)
             Text(character.fullName)
         }

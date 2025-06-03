@@ -17,6 +17,7 @@ struct CharacterDetailView: View {
                     .frame(maxWidth: .infinity, alignment: .center)
                     .padding(.vertical, 50)
             } else if let character = viewModel.character {
+                KFImageView(imageUrl: character.image)
                 Text(character.fullName)
             }
         }

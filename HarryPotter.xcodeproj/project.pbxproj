@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		0DEA02C12DEF736E00C75643 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 0DEA02C02DEF736E00C75643 /* Kingfisher */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		0DEA021D2DEE311E00C75643 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0DEA02C12DEF736E00C75643 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +117,7 @@
 			);
 			name = HarryPotter;
 			packageProductDependencies = (
+				0DEA02C02DEF736E00C75643 /* Kingfisher */,
 			);
 			productName = HarryPotter;
 			productReference = 0DEA020F2DEE311B00C75643 /* HarryPotter.app */;
@@ -195,6 +201,9 @@
 			);
 			mainGroup = 0DEA02062DEE311B00C75643;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				0DEA02BF2DEF736E00C75643 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 0DEA02102DEE311B00C75643 /* Products */;
 			projectDirPath = "";
@@ -562,6 +571,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0DEA02BF2DEF736E00C75643 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.3.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0DEA02C02DEF736E00C75643 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0DEA02BF2DEF736E00C75643 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0DEA02072DEE311B00C75643 /* Project object */;
 }
