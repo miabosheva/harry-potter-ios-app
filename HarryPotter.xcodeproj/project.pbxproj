@@ -30,11 +30,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		0DEA02112DEE311B00C75643 /* HarryPotter */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = HarryPotter;
-			sourceTree = "<group>";
-		};
 		0DEA021F2DEE311E00C75643 /* HarryPotterTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = HarryPotterTests;
@@ -43,6 +38,11 @@
 		0DEA02292DEE311E00C75643 /* HarryPotterUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = HarryPotterUITests;
+			sourceTree = "<group>";
+		};
+		0DEA028A2DEE3BDE00C75643 /* HarryPotter */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = HarryPotter;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -75,7 +75,7 @@
 		0DEA02062DEE311B00C75643 = {
 			isa = PBXGroup;
 			children = (
-				0DEA02112DEE311B00C75643 /* HarryPotter */,
+				0DEA028A2DEE3BDE00C75643 /* HarryPotter */,
 				0DEA021F2DEE311E00C75643 /* HarryPotterTests */,
 				0DEA02292DEE311E00C75643 /* HarryPotterUITests */,
 				0DEA02102DEE311B00C75643 /* Products */,
@@ -108,7 +108,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				0DEA02112DEE311B00C75643 /* HarryPotter */,
+				0DEA028A2DEE3BDE00C75643 /* HarryPotter */,
 			);
 			name = HarryPotter;
 			packageProductDependencies = (
