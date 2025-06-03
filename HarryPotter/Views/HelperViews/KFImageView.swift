@@ -4,6 +4,7 @@ import Kingfisher
 struct KFImageView: View {
     
     var imageUrl: String
+    var aspectRatio = ContentMode.fill
     
     func url() -> URL? {
         return URL(string: imageUrl)
@@ -30,7 +31,7 @@ struct KFImageView: View {
                 .onFailure { error in
                     print("Error: \(error)")
                 }
-                .aspectRatio(contentMode: .fill)
+                .aspectRatio(contentMode: aspectRatio)
         }
     }
 }
