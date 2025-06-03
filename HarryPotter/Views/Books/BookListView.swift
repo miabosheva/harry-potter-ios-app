@@ -38,7 +38,7 @@ struct BookListView: View {
             }
             .refreshable {
                 Task { @MainActor in
-                    viewModel.books = []
+                    viewModel.reset()
                     await viewModel.loadBooks()
                 }
             }
