@@ -1,29 +1,31 @@
 import Foundation
 
-class BookDetailViewModel: ObservableObject {
-    @Published var book: Book?
+class CharacterListViewModel: ObservableObject {
+    @Published var characters: [Character] = []
     @Published var isLoading: Bool = false
     @Published var errorMessage: String?
     
-    private let bookIndex: Int
     private let apiService: APIServiceProtocol
     
-    init(bookIndex: Int, apiService: APIServiceProtocol = APIService()) {
-        self.bookIndex = bookIndex
+    init(apiService: APIServiceProtocol = APIService()) {
         self.apiService = apiService
+        
         Task { @MainActor in
-            await fetchBookDetails()
+            await loadCharacters()
         }
     }
     
     @MainActor
-    func fetchBookDetails() async {
+    func loadCharacters() async {
         guard !isLoading else { return }
         isLoading = true
         errorMessage = nil
         
         do {
-            self.book = try await apiService.fetchBook(bookIndex: bookIndex)
+            let fetchedCharacters: [Character]
+            fetchedCharacters = try await apiService.fetchCharacters()
+
+            self.characters = fetchedCharacters
             isLoading = false
         } catch {
             errorMessage = error.localizedDescription

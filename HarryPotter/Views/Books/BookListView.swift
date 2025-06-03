@@ -31,6 +31,12 @@ struct BookListView: View {
                     .navigationTitle(book.title)
                     .navigationBarTitleDisplayMode(.inline)
             }
+            .refreshable {
+                Task { @MainActor in
+                    viewModel.books = []
+                    await viewModel.loadBooks()
+                }
+            }
             .overlay {
                 if viewModel.isLoading && viewModel.books.isEmpty {
                     LoadingView()

@@ -7,7 +7,7 @@ struct ErrorMessageView: View {
     var body: some View {
         VStack(spacing: 10) {
             Image(systemName: "exclamationmark.triangle.fill")
-                .font(.largeTitle)
+                .font(.title)
                 .foregroundColor(.red)
 
             Text("Error")
@@ -15,6 +15,7 @@ struct ErrorMessageView: View {
                 .foregroundColor(.red)
 
             Text(message)
+                .padding(.vertical, 8)
                 .font(.subheadline)
                 .multilineTextAlignment(.center)
                 .foregroundColor(.secondary)
@@ -24,12 +25,17 @@ struct ErrorMessageView: View {
                     retryAction()
                 }
                 .buttonStyle(.borderedProminent)
-                .padding(.top, 5)
+                .padding(.top, 8)
             }
         }
-        .padding()
+        .padding(24)
+        .frame(maxWidth: .infinity)
         .background(Color.red.opacity(0.1))
         .cornerRadius(10)
-        .padding(.horizontal)
+        .padding(.horizontal, 32)
     }
+}
+
+#Preview {
+    ErrorMessageView(message: "Lorem ipsum dolor sit amet.") {}
 }

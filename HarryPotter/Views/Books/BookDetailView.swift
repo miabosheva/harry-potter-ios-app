@@ -20,8 +20,6 @@ struct BookDetailView: View {
                 Text(book.originalTitle)
             }
         }
-//        .navigationTitle(viewModel.book?.title ?? "")
-//        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
