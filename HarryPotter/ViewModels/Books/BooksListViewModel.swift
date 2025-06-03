@@ -7,10 +7,6 @@ class BooksListViewModel: ObservableObject {
     
     private let apiService: APIServiceProtocol
     
-    private var currentPage = 1
-    private let pageSize = 223
-    private var canLoadMorePages = true
-    
     init(apiService: APIServiceProtocol = APIService()) {
         self.apiService = apiService
         
@@ -24,19 +20,12 @@ class BooksListViewModel: ObservableObject {
         guard !isLoading else { return }
         isLoading = true
         errorMessage = nil
-
+        
         do {
             let fetchedBooks: [Book]
-           
-            fetchedBooks = try await apiService.fetchBooks(page: currentPage)
-            canLoadMorePages = fetchedBooks.count == pageSize
+            fetchedBooks = try await apiService.fetchBooks()
 
-            if currentPage == 1 {
-                self.books = fetchedBooks
-            } else {
-                self.books.append(contentsOf: fetchedBooks)
-            }
-
+            self.books = fetchedBooks
             isLoading = false
         } catch {
             errorMessage = error.localizedDescription
