@@ -6,7 +6,7 @@ struct SettingsView: View {
     @State private var showingRestartAlert = false
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             Form {
                 Picker("Select Language", selection: $localizableManager.currentAppLanguage) {
                     ForEach(AppLanguage.allCases) { language in

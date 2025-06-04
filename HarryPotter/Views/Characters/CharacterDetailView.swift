@@ -20,10 +20,12 @@ struct CharacterDetailView: View {
                 
                 ZStack {
                     // Image background
-                    VStack {
-                        KFImageView(imageUrl: character.image, aspectRatio: .fit)
+                    GeometryReader { geometry in
+                        KFImageView(imageUrl: character.image, aspectRatio: .fill)
+                        //                            .ignoresSafeArea()
+                            .frame(width: geometry.size.width, height: geometry.size.height)
+                            .clipped()
                             .ignoresSafeArea()
-                            .frame(maxWidth: .infinity)
                             .overlay {
                                 Color.clear.background(.ultraThinMaterial)
                             }
@@ -67,7 +69,7 @@ struct CharacterDetailView: View {
                                             .fontWeight(.semibold)
                                     }
                                 }
-
+                                
                                 Divider()
                                 VStack(alignment: .leading, spacing: 8) {
                                     Text("BIRTH DATE")
@@ -99,14 +101,13 @@ struct CharacterDetailView: View {
                         }
                         .padding(.top, 90)
                         // added some more on the bottom for visibility
-                        .padding(.bottom, 16)
+                        .padding(.bottom, 64)
                         .padding(.horizontal, 16)
                         .background(UnevenRoundedRectangle(cornerRadii: .init(topLeading: 20, topTrailing: 20))
                             .fill(Color.white))
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
-                
             }
         }
     }
