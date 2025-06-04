@@ -1,0 +1,110 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "%@" : {
+
+    },
+    "%lld" : {
+
+    },
+    "An unknown error occurred. Please try again." : {
+      "comment" : "Unknown error message"
+    },
+    "BIRTH DATE" : {
+
+    },
+    "Books" : {
+
+    },
+    "Cancel" : {
+
+    },
+    "Changes to language may require an app restart to take full effect." : {
+
+    },
+    "Changes to language require an app restart." : {
+
+    },
+    "Characters" : {
+
+    },
+    "CHILDREN" : {
+
+    },
+    "DESCRIPTION" : {
+
+    },
+    "Failed to process data from the server. Please try again later." : {
+      "comment" : "Decoding error message"
+    },
+    "HOUSE" : {
+
+    },
+    "INTERPRETED BY" : {
+
+    },
+    "No Books Found" : {
+
+    },
+    "No Characters Found" : {
+
+    },
+    "ORIGINAL TITLE" : {
+
+    },
+    "PAGES" : {
+
+    },
+    "Received an unexpected response from the server." : {
+      "comment" : "Invalid response type error"
+    },
+    "Restart" : {
+
+    },
+    "Restart App" : {
+
+    },
+    "Restart App?" : {
+
+    },
+    "Retry" : {
+
+    },
+    "Search Books..." : {
+
+    },
+    "Search Characters..." : {
+
+    },
+    "Select Language" : {
+
+    },
+    "Settings" : {
+
+    },
+    "tab_books" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Books"
+          }
+        },
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Libros"
+          }
+        }
+      }
+    },
+    "The API URL was invalid. Please contact support." : {
+      "comment" : "Invalid URL error message"
+    },
+    "The server encountered an error. Please try again later." : {
+      "comment" : "Server error message"
+    }
+  },
+  "version" : "1.0"
+}

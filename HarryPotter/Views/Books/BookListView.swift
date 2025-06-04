@@ -33,7 +33,7 @@ struct BookListView: View {
                     .frame(height: 350)
                 }
             }
-            .navigationTitle("Books")
+            .navigationTitle("tab_books".localized())
             .navigationDestination(for: Book.self) { book in
                 BookDetailView(bookIndex: book.index)
                     .navigationTitle(book.title)
@@ -56,6 +56,9 @@ struct BookListView: View {
                         }
                     }
                 }
+            }
+            .onAppear {
+                print(UserDefaults.standard.array(forKey: "AppleLanguages"))
             }
         }
     }
