@@ -4,6 +4,15 @@ class APIService: APIServiceProtocol {
     
     private var baseURL = "https://potterapi-fedeperin.vercel.app/en"
     
+    // MARK: - Book Methods
+    
+    /// Fetch Books:
+    /// params:
+    ///  - page: Int?
+    ///  - max: Int? - number of results per page
+    ///  - searchText: String? - used when searching
+    ///
+    ///  returns a list of Book structs
     func fetchBooks(page: Int?, max: Int?, searchText: String?) async throws -> [Book] {
         guard var urlComponents = URLComponents(string: baseURL + "/books") else {
             throw APIError.invalidURL
@@ -41,7 +50,8 @@ class APIService: APIServiceProtocol {
                 throw APIError.invalidResponse
             }
             
-            if httpResponse.statusCode == 404 {
+            // Trying to paginate the search results. API returns 404 if the search results are empty but we try to access the first page.
+            if httpResponse.statusCode == 404 && searchText != nil {
                 print("API returned 404. Treating it as an empty result.")
                 return []
             }
@@ -65,6 +75,11 @@ class APIService: APIServiceProtocol {
         }
     }
     
+    /// Fetch a Book:
+    /// params:
+    ///  - bookIndex: Int - the index of a individual book
+    ///
+    ///  returns a Book object
     func fetchBook(bookIndex: Int) async throws -> Book {
         guard var urlComponents = URLComponents(string: baseURL + "/books") else {
             throw APIError.invalidURL
@@ -105,7 +120,16 @@ class APIService: APIServiceProtocol {
         }
     }
     
-    func fetchCharacters(page: Int?, max: Int?) async throws -> [Character] {
+    // MARK: - Character Methods
+    
+    /// Fetch Characters:
+    /// params:
+    ///  - page: Int?
+    ///  - max: Int? - number of results per page
+    ///  - searchText: String? - used when searching
+    ///
+    ///  returns a list of Character structs
+    func fetchCharacters(page: Int?, max: Int?, searchText: String?) async throws -> [Character] {
         
         guard var urlComponents = URLComponents(string: baseURL + "/characters") else {
             throw APIError.invalidURL
@@ -119,6 +143,11 @@ class APIService: APIServiceProtocol {
                 queryParams["page"] = String(page)
             }
         }
+        
+        if let searchText = searchText {
+            queryParams["search"] = searchText
+        }
+        
         if !queryParams.isEmpty {
             urlComponents.queryItems = queryParams.map { URLQueryItem(name: $0.key, value: $0.value) }
         }
@@ -137,7 +166,8 @@ class APIService: APIServiceProtocol {
                 throw APIError.invalidResponse
             }
             
-            if httpResponse.statusCode == 404 {
+            // Trying to paginate the search results. API returns 404 if the search results are empty but we try to access the first page.
+            if httpResponse.statusCode == 404 && searchText != nil {
                 print("API returned 404. Treating it as an empty result.")
                 return []
             }
@@ -161,6 +191,11 @@ class APIService: APIServiceProtocol {
         }
     }
     
+    /// Fetch a Character:
+    /// params:
+    ///  - bookIndex: Int - the index of a individual character
+    ///
+    ///  returns a Character object
     func fetchCharacter(characterIndex: Int) async throws -> Character {
         guard var urlComponents = URLComponents(string: baseURL + "/characters") else {
             throw APIError.invalidURL

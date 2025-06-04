@@ -23,15 +23,15 @@ struct CharacterListView: View {
                     LoadingView()
                         .frame(maxWidth: .infinity, alignment: .center)
                         .listRowSeparator(.hidden)
-                } else if viewModel.characters.isEmpty && !viewModel.isLoading && viewModel.errorMessage == nil {
+                } else if (viewModel.characters.isEmpty && !viewModel.isLoading) && (viewModel.errorMessage == nil || !viewModel.searchText.isEmpty) {
                     // placeholder for empty content
                     // TODO: - Change description, fix size
                     ContentUnavailableView(
                         "No Characters Found",
                         systemImage: "person.fill",
-                        description: Text("Lorem ipsum")
                     )
                     .listRowSeparator(.hidden)
+                    .frame(height: 350)
                 }
             }
             .navigationTitle("Characters")
@@ -40,6 +40,7 @@ struct CharacterListView: View {
                     .navigationTitle(character.nickname)
                     .navigationBarTitleDisplayMode(.inline)
             }
+            .searchable(text: $viewModel.searchText, prompt: "Search Characters...")
             .refreshable {
                 Task { @MainActor in
                     viewModel.reset()

@@ -43,6 +43,7 @@ class BooksListViewModel: ObservableObject {
         do {
             let fetchedBooks: [Book]
             if isSearching && !searchText.isEmpty {
+                // paginate seacrh results
                 fetchedBooks = try await apiService.fetchBooks(page: currentPage, max: pageSize, searchText: self.searchText)
             } else {
                 fetchedBooks = try await apiService.fetchBooks(page: currentPage, max: pageSize, searchText: nil)
@@ -60,7 +61,7 @@ class BooksListViewModel: ObservableObject {
             isLoading = false
         } catch let error as APIError {
             errorMessage = error.errorDescription
-            print(error.errorDescription)
+//            print(error.errorDescription)
             isLoading = false
         } catch {
             errorMessage = error.localizedDescription
@@ -68,6 +69,7 @@ class BooksListViewModel: ObservableObject {
         }
     }
     
+    /// MARK: - Method for pagination. Called when view reaches last row.
     @MainActor
     func loadMoreBooks(currentBook: Book) async {
         guard canLoadMorePages, !isLoading else { return }

@@ -19,10 +19,12 @@ struct BookListView: View {
                     }
                 }
                 
-                // when books are empty in list and in search
-                if (viewModel.books.isEmpty && !viewModel.isLoading) && (viewModel.errorMessage == nil || !viewModel.searchText.isEmpty) {
+                if viewModel.isLoading && !viewModel.books.isEmpty {
+                    LoadingView()
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .listRowSeparator(.hidden)
+                } else if (viewModel.books.isEmpty && !viewModel.isLoading) && (viewModel.errorMessage == nil || !viewModel.searchText.isEmpty) {
                     // placeholder for empty content
-                    // TODO: - Change description, fix size
                     ContentUnavailableView(
                         "No Books Found",
                         systemImage: "book.closed"
