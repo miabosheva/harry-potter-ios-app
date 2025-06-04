@@ -9,19 +9,19 @@ struct HomeView: View {
         TabView(selection: $viewModel.selectedTab) {
             BookListView()
                 .tabItem {
-                    Label("Books", systemImage: "book.closed.fill")
+                    Label("Books".localized(), systemImage: "book.closed.fill")
                 }
                 .tag(TabType.books)
             
             CharacterListView()
                 .tabItem {
-                    Label("Characters", systemImage: "person.fill")
+                    Label("Characters".localized(), systemImage: "person.fill")
                 }
                 .tag(TabType.characters)
             
             SettingsView()
                 .tabItem {
-                    Label("Settings", systemImage: "person.fill")
+                    Label("Settings".localized(), systemImage: "gearshape.fill")
                 }
                 .tag(TabType.settings)
         }

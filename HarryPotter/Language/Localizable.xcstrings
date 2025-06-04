@@ -14,7 +14,15 @@
 
     },
     "Books" : {
-
+      "extractionState" : "stale",
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Libros"
+          }
+        }
+      }
     },
     "Cancel" : {
 
@@ -26,10 +34,25 @@
 
     },
     "Characters" : {
-
+      "extractionState" : "stale",
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personajes"
+          }
+        }
+      }
     },
     "CHILDREN" : {
-
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HIJOS"
+          }
+        }
+      }
     },
     "DESCRIPTION" : {
 
@@ -68,7 +91,14 @@
 
     },
     "Retry" : {
-
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reintentar"
+          }
+        }
+      }
     },
     "Search Books..." : {
 
@@ -80,7 +110,15 @@
 
     },
     "Settings" : {
-
+      "extractionState" : "stale",
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajustes"
+          }
+        }
+      }
     },
     "tab_books" : {
       "extractionState" : "manual",

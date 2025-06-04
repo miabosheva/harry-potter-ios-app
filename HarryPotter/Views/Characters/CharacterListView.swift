@@ -34,7 +34,7 @@ struct CharacterListView: View {
                     .frame(height: 350)
                 }
             }
-            .navigationTitle("Characters")
+            .navigationTitle("Characters".localized())
             .navigationDestination(for: Character.self) { character in
                 CharacterDetailView(characterIndex: character.index)
                     .navigationTitle(character.nickname)

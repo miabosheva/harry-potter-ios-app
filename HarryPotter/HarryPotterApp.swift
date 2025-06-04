@@ -9,8 +9,6 @@ struct HarryPotterApp: App {
         WindowGroup {
             HomeView()
                 .environmentObject(localizableManager)
-                .environment(\.locale, Locale(identifier: localizableManager.currentAppLanguage.rawValue))
-                .id(localizableManager.currentAppLanguage.id)
         }
     }
 }

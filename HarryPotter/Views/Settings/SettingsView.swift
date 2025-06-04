@@ -36,7 +36,7 @@ struct SettingsView: View {
                         .foregroundColor(.gray)
                 }
             }
-            .navigationTitle("Settings")
+            .navigationTitle("Settings".localized())
             .alert("Restart App?", isPresented: $showingRestartAlert) {
                 Button("Restart", role: .destructive) {
                     exit(0)

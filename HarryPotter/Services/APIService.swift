@@ -1,8 +1,14 @@
 import Foundation
+import SwiftUI
 
 class APIService: APIServiceProtocol {
     
-    private var baseURL = "https://potterapi-fedeperin.vercel.app/en"
+    private let localizableManager = LocalizableManager.shared
+    
+    private var baseURL: String {
+        let languageCode = localizableManager.currentAppLanguage.rawValue
+        return "https://potterapi-fedeperin.vercel.app/\(languageCode)"
+    }
     
     // MARK: - Book Methods
     
