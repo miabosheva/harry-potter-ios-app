@@ -1,6 +1,6 @@
 import SwiftUI
 
-enum House: String, CaseIterable {
+enum House: String {
     case gryffindor = "Gryffindor"
     case hufflepuff = "Hufflepuff"
     case ravenclaw = "Ravenclaw"

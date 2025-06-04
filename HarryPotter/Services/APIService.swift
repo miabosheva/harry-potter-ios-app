@@ -4,7 +4,7 @@ class APIService: APIServiceProtocol {
     
     private var baseURL = "https://potterapi-fedeperin.vercel.app/en"
     
-    func fetchBooks(page: Int?, max: Int?) async throws -> [Book] {
+    func fetchBooks(page: Int?, max: Int?, searchText: String?) async throws -> [Book] {
         guard var urlComponents = URLComponents(string: baseURL + "/books") else {
             throw APIError.invalidURL
         }
@@ -17,6 +17,12 @@ class APIService: APIServiceProtocol {
                 queryParams["page"] = String(page)
             }
         }
+        
+        // add search query param if there is one
+        if let searchText = searchText {
+            queryParams["search"] = searchText
+        }
+        
         if !queryParams.isEmpty {
             urlComponents.queryItems = queryParams.map { URLQueryItem(name: $0.key, value: $0.value) }
         }
@@ -33,6 +39,11 @@ class APIService: APIServiceProtocol {
             
             guard let httpResponse = response as? HTTPURLResponse else {
                 throw APIError.invalidResponse
+            }
+            
+            if httpResponse.statusCode == 404 {
+                print("API returned 404. Treating it as an empty result.")
+                return []
             }
             
             guard (200...299).contains(httpResponse.statusCode) else {
@@ -124,6 +135,11 @@ class APIService: APIServiceProtocol {
             
             guard let httpResponse = response as? HTTPURLResponse else {
                 throw APIError.invalidResponse
+            }
+            
+            if httpResponse.statusCode == 404 {
+                print("API returned 404. Treating it as an empty result.")
+                return []
             }
             
             guard (200...299).contains(httpResponse.statusCode) else {

@@ -1,15 +1,30 @@
 import Foundation
+import Combine
 
 class BooksListViewModel: ObservableObject {
     @Published var books: [Book] = []
     @Published var isLoading: Bool = false
     @Published var errorMessage: String?
+    @Published var searchText: String = "" {
+        didSet {
+            searchCancellable?.cancel()
+            searchCancellable = $searchText
+                .debounce(for: .milliseconds(500), scheduler: DispatchQueue.main)
+                .sink(receiveValue: { [weak self] newText in
+                    self?.currentPage = 1
+                    self?.books = []
+                    Task { @MainActor in
+                        await self?.loadBooks(isSearching: true)
+                    }
+                })
+        }
+    }
     
     private let apiService: APIServiceProtocol
-    
     private var currentPage = 1
     private let pageSize = 5
     private var canLoadMorePages = true
+    private var searchCancellable: AnyCancellable?
     
     init(apiService: APIServiceProtocol = APIService()) {
         self.apiService = apiService
@@ -27,7 +42,12 @@ class BooksListViewModel: ObservableObject {
         
         do {
             let fetchedBooks: [Book]
-            fetchedBooks = try await apiService.fetchBooks(page: currentPage, max: pageSize)
+            if isSearching && !searchText.isEmpty {
+                fetchedBooks = try await apiService.fetchBooks(page: currentPage, max: pageSize, searchText: self.searchText)
+            } else {
+                fetchedBooks = try await apiService.fetchBooks(page: currentPage, max: pageSize, searchText: nil)
+            }
+            
             canLoadMorePages = fetchedBooks.count == pageSize
             
             if currentPage == 1 {
@@ -37,6 +57,10 @@ class BooksListViewModel: ObservableObject {
                 print("\(fetchedBooks.count) added.")
             }
             
+            isLoading = false
+        } catch let error as APIError {
+            errorMessage = error.errorDescription
+            print(error.errorDescription)
             isLoading = false
         } catch {
             errorMessage = error.localizedDescription

@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct ErrorMessageView: View {
+    let title: String = "Error"
     let message: String
     let retryAction: (() -> Void)?
 
@@ -10,7 +11,7 @@ struct ErrorMessageView: View {
                 .font(.title)
                 .foregroundColor(.red)
 
-            Text("Error")
+            Text(title)
                 .font(.headline)
                 .foregroundColor(.red)
 

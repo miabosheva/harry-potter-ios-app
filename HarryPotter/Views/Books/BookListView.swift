@@ -19,15 +19,16 @@ struct BookListView: View {
                     }
                 }
                 
-                if viewModel.books.isEmpty && !viewModel.isLoading && viewModel.errorMessage == nil {
+                // when books are empty in list and in search
+                if (viewModel.books.isEmpty && !viewModel.isLoading) && (viewModel.errorMessage == nil || !viewModel.searchText.isEmpty) {
                     // placeholder for empty content
                     // TODO: - Change description, fix size
                     ContentUnavailableView(
                         "No Books Found",
-                        systemImage: "book.closed",
-                        description: Text("Lorem ipsum")
+                        systemImage: "book.closed"
                     )
                     .listRowSeparator(.hidden)
+                    .frame(height: 350)
                 }
             }
             .navigationTitle("Books")
@@ -36,6 +37,7 @@ struct BookListView: View {
                     .navigationTitle(book.title)
                     .navigationBarTitleDisplayMode(.inline)
             }
+            .searchable(text: $viewModel.searchText, prompt: "Search Books...")
             .refreshable {
                 Task { @MainActor in
                     viewModel.reset()
