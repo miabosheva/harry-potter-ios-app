@@ -25,12 +25,15 @@ struct BookListView: View {
                         .listRowSeparator(.hidden)
                 } else if (viewModel.books.isEmpty && !viewModel.isLoading) && (viewModel.errorMessage == nil || !viewModel.searchText.isEmpty) {
                     // placeholder for empty content
-                    ContentUnavailableView(
-                        "No Books Found",
-                        systemImage: "book.closed"
-                    )
-                    .listRowSeparator(.hidden)
-                    .frame(height: 350)
+                    VStack(alignment: .center) {
+                        ContentUnavailableView(
+                            "No Books Found",
+                            systemImage: "book.closed"
+                        )
+                        .listRowSeparator(.hidden)
+                        .frame(height: 350)
+                        .frame(maxWidth: .infinity)
+                    }
                 }
             }
             .navigationTitle("tab_books".localized())

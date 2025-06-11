@@ -26,12 +26,15 @@ struct CharacterListView: View {
                 } else if (viewModel.characters.isEmpty && !viewModel.isLoading) && (viewModel.errorMessage == nil || !viewModel.searchText.isEmpty) {
                     // placeholder for empty content
                     // TODO: - Change description, fix size
-                    ContentUnavailableView(
-                        "No Characters Found",
-                        systemImage: "person.fill",
-                    )
-                    .listRowSeparator(.hidden)
-                    .frame(height: 350)
+                    VStack(alignment: .center) {
+                        ContentUnavailableView(
+                            "No Characters Found",
+                            systemImage: "person.fill",
+                        )
+                        .listRowSeparator(.hidden)
+                        .frame(height: 350)
+                        .frame(maxWidth: .infinity)
+                    }
                 }
             }
             .navigationTitle("Characters".localized())
