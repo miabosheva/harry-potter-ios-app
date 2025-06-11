@@ -18,18 +18,23 @@ struct KFImageView: View {
                 .resizable()
                 .serialize(as: .PNG)
                 .placeholder{
-                    Image(systemName: "photo.fill")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 50, height: 50)
-                        .foregroundColor(Color.gray)
-                    
+                    if isLoading {
+                        LoadingView()
+                    } else {
+                        Image(systemName: "photo.fill")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 50, height: 50)
+                            .foregroundColor(Color.gray)
+                    }
                 }
                 .onSuccess { result in
                     print("Image loaded from cache: \(result.cacheType)")
+                    isLoading = false
                 }
                 .onFailure { error in
                     print("Error: \(error)")
+                    isLoading = false
                 }
                 .aspectRatio(contentMode: aspectRatio)
         }
