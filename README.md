@@ -42,13 +42,13 @@ This app offers a range of features:
 
 * **Tab-Based Navigation:** Navigate between the primary sections of the app: **Books**, **Characters**, and **Settings**.
 * **List through Characters and Books Dynamically**
-* **External API Integration** dynamically fetched from the **PotterAPI** (`https://potterapi-fedeperin.vercel.app/`).
+* **External API Integration** dynamically fetched from the **PotterAPI** (`https://potterapi-fedeperin.vercel.app/`, Documentation: `https://vlaurencena.github.io/harry-potter-openapi-swagger-ui/`).
 * **Pagination:** Both book and character lists, including search results utilize **pagination** which optimizes performance.
 * **Search Functionality:** Find specific books or characters using the integrated search bars within their respective sections.
 * **Dynamic Language Switching:**
     * Users can seamlessly switch the app's display language between **English (en)** and **Spanish (es)** directly from the **Settings** tab.
     * Your preferred language choice is **persisted** using `UserDefaults`, so the app remembers your setting across launches.
     * Restart the app in order for all language changes to take full effect.
-* **Loading screens and Error Handling** The app includes **loading indicators** when data is being load and **error messages** when API calls fail or other issues occur.
+* **Loading screens and Error Handling:** The app includes **loading indicators** when data is being load and **error messages** when API calls fail or other issues occur.
 * **Detail Views:** Tap on any book or character in the lists to access a dedicated detail view with more information.
 * **visionOS Adaptation:** The app includes an initial configuration for visionOS, allowing it to run as a **floating `WindowGroup`** in a spatial computing environment. 
