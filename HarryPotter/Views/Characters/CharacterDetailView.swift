@@ -104,7 +104,7 @@ struct CharacterDetailView: View {
                         .padding(.bottom, 64)
                         .padding(.horizontal, 16)
                         .background(UnevenRoundedRectangle(cornerRadii: .init(topLeading: 20, topTrailing: 20))
-                            .fill(Color.white))
+                            .fill(Color(.systemBackground)))
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }

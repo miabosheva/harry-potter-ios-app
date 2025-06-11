@@ -92,7 +92,7 @@ struct BookDetailView: View {
                         .padding(.bottom, 16)
                         .padding(.horizontal, 16)
                         .background(UnevenRoundedRectangle(cornerRadii: .init(topLeading: 20, topTrailing: 20))
-                            .fill(Color.white))
+                            .fill(Color(.systemBackground)))
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
