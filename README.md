@@ -15,7 +15,7 @@ A SwiftUI app to browse through Harry Potter books and characters. It features i
 
 1.  **Clone the Repository:**
     ```bash
-    git clone [https://github.com/miabosheva/harry-potter-ios-app.git](https://github.com/miabosheva/harry-potter-ios-app.git)
+    git clone https://github.com/miabosheva/harry-potter-ios-app.git
     cd harry-potter-ios-app
     ```
     
